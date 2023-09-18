@@ -3,6 +3,8 @@
 and returns their sum as a float."""
 
 from typing import List
+
+
 def sum_list(input_list: List[float]) -> float:
     """function sum_list """
     return sum(x for x in input_list)
