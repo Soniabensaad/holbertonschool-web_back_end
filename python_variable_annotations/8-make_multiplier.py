@@ -6,11 +6,11 @@ that multiplies a float by multiplier."""
 
 from typing import Callable
 
+
 def make_multiplier(multiplier: float) -> Callable[[float], float]:
     """Function that returns a multiplier function."""
-    
+
     def multiplier_function(x: float) -> float:
         """Inner function that multiplies x by the multiplier."""
         return x * multiplier
-    
     return multiplier_function
