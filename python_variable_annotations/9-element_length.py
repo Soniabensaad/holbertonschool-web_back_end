@@ -2,6 +2,7 @@
 """function’s parameters and
 return values with the appropriate types"""
 
-from typing import List, Tuple
-def element_length(lst: List[str]) -> List[Tuple[str, int]]:
+from typing import Iterable, Sequence, List, Tuple
+
+def element_length(lst: Iterable[Sequence]) -> List[Tuple[Sequence, int]]:
     return [(i, len(i)) for i in lst]
