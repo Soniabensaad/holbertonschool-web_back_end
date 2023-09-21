@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+"""Measure the runtime"""
 import asyncio
 import random
 import time
@@ -17,6 +18,7 @@ async def wait_n(n: int, max_delay: int) -> List[float]:
     tasks = [wait_random(max_delay) for _ in range(n)]
     results = await asyncio.gather(*tasks)
     return sorted(results)
+
 
 def measure_time(n: int, max_delay: int) -> float:
     """Measure the runtime"""
