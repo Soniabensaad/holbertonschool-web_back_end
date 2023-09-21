@@ -18,7 +18,6 @@ async def wait_n(n: int, max_delay: int) -> List[float]:
     results = await asyncio.gather(*tasks)
     return sorted(results)
 
-
 def measure_time(n: int, max_delay: int) -> float:
     """Measure the runtime"""
     start_time = time.time()
