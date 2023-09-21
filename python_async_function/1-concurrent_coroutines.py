@@ -1,4 +1,8 @@
 #!/usr/bin/env python3
+"""Let's execute multiple
+coroutines at the same time with async"""
+
+
 import asyncio
 import random
 from typing import List
@@ -14,7 +18,9 @@ async def wait_random(max_delay: int = 10) -> float:
 """Let's execute multiple
 coroutines at the same time with async"""
 
+
 async def wait_n(n: int, max_delay: int) -> List[float]:
+    """concurrency."""
     tasks = [wait_random(max_delay) for _ in range(n)]
     results = await asyncio.gather(*tasks)
     return sorted(results)
