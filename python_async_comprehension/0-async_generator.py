@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+"""hint generator in python"""
 
 import asyncio
 import random
