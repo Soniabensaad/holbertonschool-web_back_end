@@ -4,7 +4,7 @@ from typing import List
 
 async_comprehension = __import__('1-async_comprehension').async_comprehension
 
-async def measure_runtime() -> List[float]:
+async def measure_runtime() -> float:
     tasks = [async_comprehension() for _ in range(4)]
     results = await asyncio.gather(*tasks)
     return results
