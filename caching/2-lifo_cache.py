@@ -9,7 +9,7 @@ class LIFOCache(BaseCaching):
     def __init__(self):
         super().__init__()
         self.lifo = []
-    
+
     def put(self, key, item):
         """Must assign to the dictionary """
         if key is not None and item is not None:
