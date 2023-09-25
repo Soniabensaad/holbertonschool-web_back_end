@@ -2,6 +2,8 @@
 """ LIFO Caching"""
 from base_caching import BaseCaching
 class LIFOCache(BaseCaching):
+    """class LIFOCache that inherits from BaseCaching
+    and is a caching system"""
     def __init__(self):
         super().__init__()
         self.lifo = []
@@ -22,4 +24,3 @@ class LIFOCache(BaseCaching):
         if key in self.cache_data:
             return self.cache_data[key]
         return None
-
