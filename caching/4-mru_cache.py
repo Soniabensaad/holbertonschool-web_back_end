@@ -12,11 +12,10 @@ class MRUCache(BaseCaching):
     def put(self, key, item):
         """Must assign to the dictionary """
         if key in self.cache_data:
-            
             self.cache_data.move_to_end(key)
         if key is not None and item is not None:
             if len(self.cache_data) >= BaseCaching.MAX_ITEMS:
-                discarded_key = next(iter(self.cache_data))
+                discarded_key = next(iter(self.cache_data.keys()))  # Corrected line
                 print(f"DISCARD: {discarded_key}")
                 self.cache_data.popitem(last=False)
             self.cache_data[key] = item
