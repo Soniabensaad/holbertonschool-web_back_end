@@ -9,6 +9,7 @@ class LIFOCache(BaseCaching):
     def __init__(self):
         super().__init__()
         self.lifo = []
+    
     def put(self, key, item):
         """Must assign to the dictionary """
         if key is not None and item is not None:
@@ -18,7 +19,7 @@ class LIFOCache(BaseCaching):
                 print(f"DISCARD: {first_key}")
             self.lifo.append(key)
             self.cache_data[key] = item
-    
+
     def get(self, key):
         """Must return the value in self.cache_data"""
         if key in self.cache_data:
