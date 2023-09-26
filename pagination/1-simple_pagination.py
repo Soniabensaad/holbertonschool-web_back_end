@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+"""1. Simple pagination"""
 import csv
 import math
 from typing import List, Tuple
@@ -24,7 +25,7 @@ class Server:
     def get_page(self, page: int = 1, page_size: int = 10) -> List[List]:
         """method named get_page"""
         assert isinstance(page, int) and page > 0
-        assert isinstance(page_size, int) and page_size > 0 
+        assert isinstance(page_size, int) and page_size > 0
         total_pages = math.ceil(len(self.dataset()) / page_size)
         if page < 1 or page > total_pages:
             return []
