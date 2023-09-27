@@ -33,13 +33,15 @@ class Server:
         return self.dataset()[start:end]
     
     def get_hyper(self, page: int = 1, page_size: int = 10) -> List[List]:
-        items = len(self.dataset())  # Calculate the total number of items
-        current_page = (page - 1) // page_size + 1  # Calculate the current page number
-        data = self.dataset()
-        next_page = current_page + 1 if current_page < (items + page_size - 1) // page_size else None
-        prev_page = current_page - 1 if current_page > 1 else None
+       items = len(self.dataset())  # Calculate the total number of items
+       current_page = (page - 1) // page_size + 1  # Calculate the current page number
+       data = self.dataset()
 
-        return {
+    # Calculate next_page and prev_page based on page number validity
+       next_page = current_page + 1 if current_page < (items + page_size - 1) // page_size else None
+       prev_page = current_page - 1 if current_page > 1 else None
+
+       return {
         "page_size": page_size,
         "page": current_page,
         "data": data[(current_page - 1) * page_size:current_page * page_size],
@@ -47,6 +49,7 @@ class Server:
         "prev_page": prev_page is not None,
         "total_pages": (items + page_size - 1) // page_size
     }
+
 
 
     def index_range(self, page: int, page_size: int) -> Tuple[int, int]:
