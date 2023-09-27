@@ -2,7 +2,7 @@
 """2. Hypermedia pagination"""
 import csv
 import math
-from typing import List, Tuple
+from typing import List, Tuple, Dict
 
 
 class Server:
@@ -32,10 +32,10 @@ class Server:
         start, end = self.index_range(page, page_size)
         return self.dataset()[start:end]
     
-    def get_hyper(self, page: int = 1, page_size: int = 10) -> List[List]:
+    def get_hyper(self, page: int = 1, page_size: int = 10) -> Dictict:
        items = len(self.dataset())  # Calculate the total number of items
        current_page = (page - 1) // page_size + 1  # Calculate the current page number
-       data = self.dataset()
+       data = self.get_page(page, page_size)
 
     # Calculate next_page and prev_page based on page number validity
        next_page = current_page + 1 if current_page < (items + page_size - 1) // page_size else None
@@ -44,9 +44,9 @@ class Server:
        return {
         "page_size": page_size,
         "page": current_page,
-        "data": data[(current_page - 1) * page_size:current_page * page_size],
-        "next_page": next_page is not None,
-        "prev_page": prev_page is not None,
+        "data": data,
+        "next_page": next_page ,
+        "prev_page": prev_page ,
         "total_pages": (items + page_size - 1) // page_size
     }
 
