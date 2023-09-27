@@ -32,7 +32,7 @@ class Server:
         start, end = self.index_range(page, page_size)
         return self.dataset()[start:end]
     
-    def get_hyper(self, page: int = 1, page_size: int = 10) -> Dictict:
+    def get_hyper(self, page: int = 1, page_size: int = 10) -> Dict:
        items = len(self.dataset())  # Calculate the total number of items
        current_page = (page - 1) // page_size + 1  # Calculate the current page number
        data = self.get_page(page, page_size)
