@@ -49,6 +49,9 @@ class Server:
         # Calculate the actual page based on the start index
         page = start_index // page_size + 1
 
+        # Calculate next_index based on its existence
+        next_index = (index + 1) if (index + 1) < total_pages else None
+
         # Delete the entry from the indexed dataset if it exists
         if index is not None and index in self.__indexed_dataset:
             del self.__indexed_dataset[index]
@@ -58,7 +61,8 @@ class Server:
             "page": page,
             "total_pages": total_pages,
             "items": items,
-            "start_index": start_index
+            "start_index": start_index,
+            "next_index": next_index
         }
 
     def indexed_dataset(self) -> Dict[int, List]:
