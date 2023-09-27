@@ -43,8 +43,8 @@ class Server:
         "page_size": page_size,
         "page": current_page,
         "data": data[(current_page - 1) * page_size:current_page * page_size],
-        "next_page": next_page,
-        "prev_page": prev_page,
+        "next_page": next_page is not None,
+        "prev_page": prev_page is not None,
         "total_pages": (items + page_size - 1) // page_size
     }
 
