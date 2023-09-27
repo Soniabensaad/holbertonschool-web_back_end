@@ -38,7 +38,7 @@ class Server:
         data = self.get_page(page, page_size)
         total_pages = math.ceil(items / page_size)
         page_size = page_size if page < total_pages else 0
-        next_page = page + 1 if page  + 1 < page_size - 1 else None
+        next_page = page + 1 if page + 1 < page_size - 1 else None
         prev_page = page - 1 if page - 1 > 0 else None
         return {
             "page_size": page_size,
@@ -47,7 +47,7 @@ class Server:
             "next_page": next_page,
             "prev_page": prev_page,
             "total_pages": total_pages
-    }
+            }
 
     def index_range(self, page: int, page_size: int) -> Tuple[int, int]:
         """ find the correct indexes to paginate the dataset
