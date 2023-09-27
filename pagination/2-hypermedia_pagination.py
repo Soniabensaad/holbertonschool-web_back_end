@@ -31,18 +31,18 @@ class Server:
             return []
         start, end = self.index_range(page, page_size)
         return self.dataset()[start:end]
-    
+
     def get_hyper(self, page: int = 1, page_size: int = 10) -> Dict:
-       items = len(self.dataset())  # Calculate the total number of items
-       data = self.get_page(page, page_size)
-       total_pages = math.ceil(items / page_size)
-       page_size = page_size if page < total_pages else 0
+        items = len(self.dataset())  # Calculate the total number of items
+        data = self.get_page(page, page_size)
+        total_pages = math.ceil(items / page_size)
+        page_size = page_size if page < total_pages else 0
 
     # Calculate next_page and prev_page based on page number validity
-       next_page = page + 1 if page  + 1 < page_size - 1 else None
-       prev_page = page - 1 if page - 1 > 0 else None
+        next_page = page + 1 if page  + 1 < page_size - 1 else None
+        prev_page = page - 1 if page - 1 > 0 else None
 
-       return {
+        return {
         "page_size": page_size,
         "page": page,
         "data": data,
