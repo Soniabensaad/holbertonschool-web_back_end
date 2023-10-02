@@ -28,6 +28,7 @@ def filter_datum(fields: List[str], redaction: str,
 
 class RedactingFormatter(logging.Formatter):
     """ Redacting Formatter class
+    Copy the following code into filtered_logger.py.
         """
 
     REDACTION = "***"
@@ -35,8 +36,11 @@ class RedactingFormatter(logging.Formatter):
     SEPARATOR = ";"
 
     def __init__(self, fields: List[str]):
+        """Copy the following code into filtered_logger.py."""
         super(RedactingFormatter, self).__init__(self.FORMAT)
         self.fields = fields
 
     def format(self, record: logging.LogRecord) -> str:
-        return filter_datum(self.fields, self.REDACTION, super(RedactingFormatter, self).format(record), self.SEPARATOR)
+        """Copy the following code into filtered_logger.py."""
+        return filter_datum(self.fields, self.REDACTION,
+                            super(RedactingFormatter, self).format(record), self.SEPARATOR)
