@@ -8,6 +8,7 @@ import csv
 
 PII_FIELDS = ("name", "email", "phone", "ssn", "password")
 
+
 def filter_datum(fields: List[str], redaction: str,
                  message: str, separator: str) -> str:
     """
@@ -17,7 +18,8 @@ def filter_datum(fields: List[str], redaction: str,
         fields (List[str]): List of strings representing fields to obfuscate.
         redaction (str): String representing the redaction value.
         message (str): String representing the log message.
-        separator (str): String representing the character separating fields in the log message.
+        separator (str): String representing the character
+        separating fields in the log message.
 
     Returns:
         str: The log message with specified fields obfuscated.
