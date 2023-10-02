@@ -44,4 +44,4 @@ class RedactingFormatter(logging.Formatter):
         """Copy the following code into filtered_logger.py."""
         return filter_datum(self.fields, self.REDACTION,
                             super(RedactingFormatter, self).format(record),
-                              self.SEPARATOR)
+                            self.SEPARATOR)
