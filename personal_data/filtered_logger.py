@@ -42,5 +42,6 @@ class RedactingFormatter(logging.Formatter):
 
     def format(self, record: logging.LogRecord) -> str:
         """Copy the following code into filtered_logger.py."""
-        return filter_datum(self.fields, self.REDACTION,
-                            super(RedactingFormatter, self).format(record), self.SEPARATOR)
+        return filter_datum(self.fields,
+                             self.REDACTION,
+                               super(RedactingFormatter, self).format(record), self.SEPARATOR)
