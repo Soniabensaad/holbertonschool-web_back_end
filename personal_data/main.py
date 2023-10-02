@@ -2,7 +2,6 @@
 """
 Main file
 """
-
 import logging
 
 get_logger = __import__('filtered_logger').get_logger
