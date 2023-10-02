@@ -2,7 +2,7 @@
 import re
 from typing import List, Tuple
 """ Regex-ing"""
-def filter_datum(fields: List, redaction: str, message: str, separator: str):
+def filter_datum(fields: List[str], redaction: str, message: str, separator: str):
     """Write a function called filter_datum that
     returns the log message obfuscated"""
     for f in fields:
