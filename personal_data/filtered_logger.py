@@ -64,14 +64,15 @@ def get_logger() -> logging.Logger:
     log.addHandler(sh)
     return log
 
-def get_db()-> mysql.connector.connection.MySQLConnection:
+
+def get_db() -> mysql.connector.connection.MySQLConnection:
     """Connect to secure database"""
     mhost = os.getenv("PERSONAL_DATA_DB_HOST", "localhost")
     muser = os.getenv("PERSONAL_DATA_DB_USERNAME", "root")
     mpassword = os.getenv("PERSONAL_DATA_DB_PASSWORD", "")
     mdb = os.getenv("PERSONAL_DATA_DB_NAME")
 
-    connection  = mysql.connector.connect(
+    connection = mysql.connector.connect(
         host=mhost,
         username=muser,
         password=mpassword,
