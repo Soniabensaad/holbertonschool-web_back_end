@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Regex-ing"""
 import re
-from typing import List
+from typing import List, Tuple
 import logging
 import csv
 import os
@@ -79,3 +79,30 @@ def get_db() -> mysql.connector.connection.MySQLConnection:
         database=mdb
     )
     return connection
+
+def main():
+    """Read and filter data"""
+    database: mysql.connector.connection.MySQLConnection = get_db()
+    cursoro = database.cursor()
+    hedears: Tuple= (head[0] for head in cursor.description)
+    cursoro.execute("SELECT name, email, phone, ssn, password;")
+    log: logging.Logger = get_logger()
+    for row in cursoro:
+        
+        log_message = "name={}; email={}; phone={}; ssn={}; password={}".format(
+            row[0], row[1], row[2], row[3], row[4]
+        )
+
+        
+        log.info(log_message)
+
+    
+    cursoro.close()
+
+
+
+
+
+
+if __name__ == '__main__':
+    main()
