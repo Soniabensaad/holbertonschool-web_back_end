@@ -2,6 +2,8 @@
 """Auth class"""
 from flask import request
 from typing import List
+
+
 """Auth class"""
 class Auth:
     """Create the class Auth"""
@@ -25,4 +27,3 @@ class Auth:
         It will be used to get the current user in the future.
         """
         return None
-    
