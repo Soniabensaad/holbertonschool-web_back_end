@@ -14,7 +14,12 @@ class Auth:
         This method will be used for authentication logic.
         For now, it always returns False.
         """
-        return False
+        if path is None or excluded_paths is None or len(excluded_paths) == 0:
+            return True
+        if path in excluded_paths:
+            return False
+        if excluded_paths[-1] is not '/':
+            path += '/'
 
     def authorization_header(self, request=None) -> str:
         """
