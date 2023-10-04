@@ -29,7 +29,6 @@ class Auth:
 
         return True
 
-
     def authorization_header(self, request=None) -> str:
         """
         This method returns None for now.
