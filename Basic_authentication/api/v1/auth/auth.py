@@ -34,7 +34,9 @@ class Auth:
         This method returns None for now.
         It will be used to handle authorization headers in the future.
         """
-        return None
+        if request is None or ("Authorization" not in request.headers):
+            return None
+        return request.headers("Authorization")
 
     def current_user(self, request=None):
         """
