@@ -43,5 +43,5 @@ class BasicAuth(Auth):
         try:
             decode_bytes = b64decode(base64_authorization_header)
         except binascii.Error as error:
-           return None
-        return  decode_bytes.decode('utf-8')
+            return None
+        return decode_bytes.decode('utf-8')
