@@ -47,3 +47,9 @@ What Base64 is
 How to encode a string in Base64
 What Basic authentication means
 How to send the Authorization header
+General
+What authentication means
+What session authentication means
+What Cookies are
+How to send Cookies
+How to parse Cookies
