@@ -7,11 +7,10 @@ from flask import abort, jsonify, request
 import os
 from os import getenv
 
+
 @app_views.route('/auth_session/login', methods=['POST'], strict_slashes=False)
 def login():
     """ POST /auth_session/login
-    Return
-        - Logged in user
     """
     email = request.form.get('email')
 
