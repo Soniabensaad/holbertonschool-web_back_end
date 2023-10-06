@@ -3,7 +3,6 @@
 """
 from flask import request
 from typing import List, TypeVar
-from os import getenv
 
 
 class Auth:
@@ -13,7 +12,6 @@ class Auth:
         """ Method for requiring authentication """
         if path is None or excluded_paths is None or not len(excluded_paths):
             return True
-        # Add slash to all cases for consistency
         if path[-1] != '/':
             path += '/'
         if excluded_paths[-1] != '/':
@@ -32,12 +30,3 @@ class Auth:
     def current_user(self, request=None) -> TypeVar('User'):
         """ Validates current user """
         return None
-
-    def session_cookie(self, request=None):
-        ''' Return cookie value from request. '''
-        if request is None:
-            return None
-
-        cookie_key = getenv('SESSION_NAME')
-
-        return request.cookies.get(cookie_key)
