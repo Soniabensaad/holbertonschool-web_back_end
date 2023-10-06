@@ -127,8 +127,8 @@ def before_request():
     else:
         request.current_user = auth.current_user(request)
 
-    if auth.authorization_header(request) is None\
-        and auth.session_cookie(request) is None:
+    if (auth.authorization_header(request) is None
+            and auth.session_cookie(request) is None):
         abort(401)
 
 
