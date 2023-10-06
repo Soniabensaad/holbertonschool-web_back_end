@@ -5,6 +5,7 @@ from flask import request
 from typing import List, TypeVar
 import os
 
+
 class Auth:
     """ Class to manage the API authentication """
 
@@ -30,7 +31,7 @@ class Auth:
     def current_user(self, request=None) -> TypeVar('User'):
         """ Validates current user """
         return None
-    
+
     def session_cookie(self, request=None):
         """Session cookie"""
         if request is None:
