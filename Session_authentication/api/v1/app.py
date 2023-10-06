@@ -42,29 +42,30 @@ def forbidden(error) -> str:
 
 
 @app.before_request
-def before_request() -> str:
-    """ Before Request Handler
-    Requests Validation
+def before_request():
     """
-    if auth is None:
+        before request blueprint handler
+    """
+    unauthorized = [
+        '/api/v1/status/',
+        '/api/v1/unauthorized/',
+        '/api/v1/forbidden/',
+        '/api/v1/auth_session/login/'
+        ]
+    if not auth:
+        return
+    if not auth.require_auth(request.path, unauthorized):
         return
 
-    excluded_paths = ['/api/v1/status/',
-                      '/api/v1/unauthorized/',
-                      '/api/v1/forbidden/']
-
-    if not auth.require_auth(request.path, excluded_paths):
-        return
-
-    if auth.authorization_header(request) is None \
-            and auth.session_cookie(request) is None:
+    if (auth.authorization_header(request) is None
+            and auth.session_cookie(request) is None):
         abort(401)
 
-    current_user = auth.current_user(request)
-    if current_user is None:
+    elif auth.current_user(request) is None:
         abort(403)
+    else:
+        request.current_user = auth.current_user(request)
 
-    request.current_user = current_user
 
 
 if __name__ == "__main__":
