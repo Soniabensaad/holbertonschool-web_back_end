@@ -7,9 +7,7 @@ from user import Base, User
 from sqlalchemy.orm.exc import NoResultFound
 from sqlalchemy.exc import InvalidRequestError
 
-data = [
-    "id", "email", "hashed_password",
-    "session_id", "reset_token"]
+
 class DB:
     """DB class
     """
@@ -59,7 +57,7 @@ class DB:
             user = self.find_user_by(id=user_id)
 
             for key, value in kwargs.items():
-                if key in data:
+                if hasattr(user, key):
                     setattr(user, key, value)
             self._session.commit()
         except ValueError:
