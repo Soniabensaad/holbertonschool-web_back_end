@@ -30,10 +30,6 @@ class Auth:
             if find:
                 raise ValueError(f"User <{find.email}> already exists")
         except NoResultFound:
-            pass
-        else:
             password_hash = _hash_password(password)
             user = self._db.add_user(email, password_hash)
-            return user
-
-        return None
+        return user
