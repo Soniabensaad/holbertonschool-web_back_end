@@ -19,9 +19,9 @@ def hello():
 @app.route("/users", methods=["POST"])
 def register_user():
     try:
-        user_data = request.get_json()
-        email = user_data.get("email")
-        password = user_data.get("password")
+        
+        email = request.form.get("email")
+        password = request.form.get("password")
     except KeyError:
         abort(400)
 
