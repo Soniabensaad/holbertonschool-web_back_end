@@ -5,7 +5,8 @@
 import bcrypt
 from db import DB
 from user import User
-from sqlalchemy.orm.exc import NoResultFound 
+from sqlalchemy.orm.exc import NoResultFound
+
 
 def _hash_password(password: str) -> bytes:
     """you will define a _hash_password"""
@@ -15,6 +16,7 @@ def _hash_password(password: str) -> bytes:
     salt = bcrypt.gensalt()
     password_hashed = bcrypt.hashpw(in_bytes_password, salt)
     return password_hashed
+
 
 class Auth:
     """Auth class to interact with the authentication database.
