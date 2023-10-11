@@ -8,10 +8,10 @@ data = {
     "message": "Bienvenue"
 }
 
+
 @app.route("/", methods=["GET"])
 def hello():
     return jsonify(data)
-
 
 
 if __name__ == "__main__":
