@@ -20,8 +20,8 @@ def hello():
 def register_user():
     try:
         
-        email = request.form.get("email")
-        password = request.form.get("password")
+        email = request.form["email"]
+        password = request.form["password"]
     except KeyError:
         abort(400)
 
