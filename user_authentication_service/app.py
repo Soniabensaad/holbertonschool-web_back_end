@@ -16,6 +16,7 @@ data = {
 def hello():
     return jsonify(data)
 
+
 @app.route("/users", methods=["POST"])
 def register_user():
     try:
@@ -31,6 +32,7 @@ def register_user():
     except ValueError as e:
         msg = {"message": "email already registered"}
         return jsonify(msg), 400
+
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port="5000")
