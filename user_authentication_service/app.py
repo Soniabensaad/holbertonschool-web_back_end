@@ -34,7 +34,7 @@ def register_user():
         return jsonify(msg), 400
 
 @app.route("/sessions", methods=["POST"])
-def login():
+def login() -> str:
     try:
         email = request.form.get("email")
         password = request.form.get("password")
