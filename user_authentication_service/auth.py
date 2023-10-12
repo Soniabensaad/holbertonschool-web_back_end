@@ -53,7 +53,7 @@ class Auth:
 
         check = bcrypt.checkpw(password.encode('utf-8'), user.hashed_password)
         return check
-    
+
     def create_session(self, email: str) -> str:
         """ Get session ID"""
         try:
