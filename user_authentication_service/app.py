@@ -43,7 +43,8 @@ def login() -> str:
         response = jsonify(
             {"email": email,
               "message": "logged in",
-              "session_id": session_id})
+              "session_id": session_id}
+            )
         response.set_cookie("session_id", session_id)
         return response
     else:
