@@ -55,6 +55,7 @@ class Auth:
         return check
     
     def create_session(self, email: str) -> str:
+        """ Get session ID"""
         try:
             user = self._db.find_user_by(email=email)
             session_id = _generate_uuid()
