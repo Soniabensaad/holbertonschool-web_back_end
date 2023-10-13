@@ -14,6 +14,7 @@ data = {
 
 @app.route("/", methods=["GET"])
 def hello():
+    """hello"""
     return jsonify(data)
 
 
@@ -85,6 +86,7 @@ def get_reset_password_token() -> str:
         token = AUTH.get_reset_password_token(email)
         return jsonify({"email": f"{email}", "reset_token": f"{token}"}), 200
 
+
 @app.route('/reset_password', methods=["PUT"])
 def update_password() -> str:
     try:
@@ -100,6 +102,7 @@ def update_password() -> str:
         abort(403)
 
     return jsonify({"email": email, "message": "Password updated"}), 200
+
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port="5000")
