@@ -50,21 +50,18 @@ def login() -> str:
     else:
         abort(401)
 
-@app.route("sessions", methods=["DELETE"])
+@app.route('/sessions', methods=['DELETE'])
 def logout() -> str:
+    """ logout
+       str: message
+    """
     session_id = request.cookies.get('session_id')
-
-    if session_id is None:
-        abort(403)
-
     user = AUTH.get_user_from_session_id(session_id)
-
-    if user is None:
+    if user:
+        AUTH.destroy_session(user.id)
+        return redirect('/')
+    else:
         abort(403)
-
-    AUTH.destroy_session(user.id)
-
-    return redirect('/')
 
 
 if __name__ == "__main__":
