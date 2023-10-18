@@ -9,13 +9,14 @@ from unittest.mock import patch
 
 class TestGithubOrgClient(unittest.TestCase):
     """the client.GithubOrgClient class."""
+
     @parameterized.expand([
-        ('google'),
-        ('abc')
+        ("google",),
+        ("abc",)
     ])
     @patch('client.get_json')
-    def  test_org(self, input, mock):
+    def test_org(self, input_org, mock_get_json):
         """Parameterize and patch as decorators"""
-        class_test = GithubOrgClient(input)
+        class_test = GithubOrgClient(input_org)
         class_test.org()
-        mock.assert_called_once_with(f"https://api.github.com/orgs/{input}")
+        mock_get_json.assert_called_once_with(f"https://api.github.com/orgs/{input_org}")
