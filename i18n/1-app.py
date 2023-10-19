@@ -1,14 +1,14 @@
 from flask import Flask
 from flask_babel import Babel
 
-app = Flask(__name)
-
-class Config:
+class Config(object):
+    """ Configuration Babel """
     LANGUAGES = ["en", "fr"]
-    BABEL_DEFAULT_LOCALE = "en"
-    BABEL_DEFAULT_TIMEZONE = "UTC"
+    BABEL_DEFAULT_TIMEZONE = 'UTC'
+    BABEL_DEFAULT_LOCALE = 'en'
 
-app.config.from_object('1-app.Config')
 
+app = Flask(__name__)
 app.config.from_object(Config)
 babel = Babel(app)
+
