@@ -2,10 +2,8 @@
 """ Module for testing client """
 from client import GithubOrgClient
 import unittest
-from parameterized import parameterized, parameterized_class
-import json
-from unittest.mock import patch, PropertyMock, Mock
-
+from parameterized import parameterized
+from unittest.mock import patch, PropertyMock
 
 class TestGithubOrgClient(unittest.TestCase):
     """the client.GithubOrgClient class."""
@@ -19,8 +17,7 @@ class TestGithubOrgClient(unittest.TestCase):
         """Parameterize and patch as decorators"""
         class_test = GithubOrgClient(input_org)
         class_test.org()
-        mock_get_json.assert_called_once_with
-        (f"https://api.github.com/orgs/{input_org}")
+        mock_get_json.assert_called_once_with(f"https://api.github.com/orgs/{input_org}")
 
     @patch('client.get_json')
     def test_public_repos(self, mock_json):
@@ -40,9 +37,19 @@ class TestGithubOrgClient(unittest.TestCase):
             mock_public.assert_called_once()
             mock_json.assert_called_once()
 
+    @parameterized.expand([
+        ({"license": {"key": "my_license"}}, "my_license", True),
+        ({"license": {"key": "other_license"}}, "my_license", False),
+    ])
+    def test_has_license(self, repo, license_key, expected):
+        """Test has_license method"""
+        test_class = GithubOrgClient('test')
+        result = test_class.has_license(repo, license_key)
+        self.assertEqual(result, expected)
 
 class TestIntegrationGithubOrgClient(unittest.TestCase):
     """Integration test"""
+
     @classmethod
     def setUpClass(cls):
         cls.get_patcher = patch('requests.get', side_effect=[
