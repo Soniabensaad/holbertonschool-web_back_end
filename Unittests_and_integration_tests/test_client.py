@@ -19,7 +19,8 @@ class TestGithubOrgClient(unittest.TestCase):
         """Parameterize and patch as decorators"""
         class_test = GithubOrgClient(input_org)
         class_test.org()
-        mock_get_json.assert_called_once_with(f"https://api.github.com/orgs/{input_org}")
+        mock_get_json.assert_called_once_with
+        (f"https://api.github.com/orgs/{input_org}")
 
     @patch('client.get_json')
     def test_public_repos(self, mock_json):
@@ -38,6 +39,8 @@ class TestGithubOrgClient(unittest.TestCase):
 
             mock_public.assert_called_once()
             mock_json.assert_called_once()
+
+
 class TestIntegrationGithubOrgClient(unittest.TestCase):
     """ Tests fixture github org client """
 
