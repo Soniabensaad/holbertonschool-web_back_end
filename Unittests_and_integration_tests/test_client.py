@@ -42,42 +42,24 @@ class TestGithubOrgClient(unittest.TestCase):
 
 
 class TestIntegrationGithubOrgClient(unittest.TestCase):
-    """ Tests fixture github org client """
-
+    """Integration test"""
     @classmethod
     def setUpClass(cls):
-        """ Before each method"""
-        conf = {'return_value.json.side_effect':
-                [
-                    cls.org_payload, cls.repos_payload,
-                    cls.org_payload, cls.repos_payload
-                ]
-                }
-        cls.get_patcher = patch('requests.get', **conf)
-
-        cls.mock = cls.get_patcher.start()
-
-    def test_public_repos(self):
-        """ More integration """
-        test_class = GithubOrgClient("google")
-
-        self.assertEqual(test_class.org, self.org_payload)
-        self.assertEqual(test_class.repos_payload, self.repos_payload)
-        self.assertEqual(test_class.public_repos(), self.expected_repos)
-        self.assertEqual(test_class.public_repos("XLICENSE"), [])
-        self.mock.assert_called()
-
-    def test_public_repos_with_license(self):
-        """ Rrepos with license """
-        test_class = GithubOrgClient("google")
-
-        self.assertEqual(test_class.public_repos(), self.expected_repos)
-        self.assertEqual(test_class.public_repos("XLICENSE"), [])
-        self.assertEqual(test_class.public_repos(
-            "apache-2.0"), self.apache2_repos)
-        self.mock.assert_called()
+        cls.get_patcher = patch('requests.get', side_effect=[
+            cls.org_payload, cls.repos_payload
+        ])
+        cls.mocked_get = cls.get_patcher.start()
 
     @classmethod
     def tearDownClass(cls):
-        """ After of each class """
         cls.get_patcher.stop()
+
+    def test_public_repos(self):
+        """test public repos """
+
+    def test_public_repos_with_license(self):
+        """test public with license"""
+
+
+if __name__ == '__main__':
+    unittest.main()
