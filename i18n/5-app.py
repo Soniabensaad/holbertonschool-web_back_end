@@ -33,7 +33,7 @@ app.config.from_object('5-app.Config')
 @app.route('/', methods=['GET'], strict_slashes=False)
 def index() -> str:
     """ GET /
-    Return: 4-index.html
+    Return: 5-index.html
     """
     return render_template('5-index.html')
 
