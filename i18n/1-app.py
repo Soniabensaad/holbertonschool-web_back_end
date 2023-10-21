@@ -4,6 +4,7 @@
 from flask import Flask
 from flask_babel import Babel
 
+
 class Config(object):
     """ Configuration Babel """
     LANGUAGES = ["en", "fr"]
@@ -14,3 +15,6 @@ class Config(object):
 app = Flask(__name__)
 app.config.from_object(Config)
 babel = Babel(app)
+
+if __name__ == "__main__":
+    app.run()
