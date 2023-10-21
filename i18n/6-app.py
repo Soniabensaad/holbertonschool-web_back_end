@@ -49,23 +49,22 @@ def get_user() -> Union[dict, None]:
     return user[login_user]
 
 
+
 @babel.localeselector
 def get_locale():
-    """ Locale language
-
-        Return:
-            Best match to the language
-    """
-    locale = request.args.get('locale', None)
-
+    locale = request.args.get('locale')
     if locale and locale in app.config['LANGUAGES']:
         return locale
 
-    locale = request.headers.get('locale', None)
+    if 'user' in g and 'locale' in g.user and g.user['locale'] in app.config['LANGUAGES']:
+        return g.user['locale']
+
+    locale = request.headers.get('locale')
     if locale and locale in app.config['LANGUAGES']:
         return locale
 
-    return request.accept_languages.best_match(app.config['LANGUAGES'])
+    return app.config['BABEL_DEFAULT_LOCALE']
+
 
 
 @app.route('/', methods=['GET'], strict_slashes=False)
