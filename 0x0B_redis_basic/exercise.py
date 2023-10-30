@@ -26,8 +26,12 @@ class Cache:
         return None
     def get_str(self, key: str) -> str:
         return self._redis.get(key).decode("utf-8")
-    def get_int (self, key: str) -> int:
+    
+    def get_int(self, key: str) -> int:
         value = self._redis.get(key)
-        if value is not None:
-           return int(value)
-        return 0 
+        try:
+            value = int(value.decode('utf-8'))
+        except Exception:
+            value = 0
+
+        return value
