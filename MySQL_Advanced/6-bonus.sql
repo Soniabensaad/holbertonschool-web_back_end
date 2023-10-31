@@ -1,14 +1,18 @@
 -- 6. Add bonus
-CREATE PROCEDURE AddBonus (
-    IN user_id int,
-    IN project_name varchar(255),
-    IN score float
-)
+DROP PROCEDURE IF EXISTS AddBonus;
+DELIMITER //
+CREATE PROCEDURE AddBonus(
+    IN user_id INT,
+    IN project_name VARCHAR(255),
+    IN score FLOAT)
 BEGIN
-    INSERT INTO projects (name)
-    SELECT project_name FROM DUAL
-
-    WHERE NOT EXISTS (SELECT * FROM projects WHERE name = project_name);
-    INSERT INTO corrections (user_id, project_id, score)
-    VALUES (user_id, (SELECT id FROM projects WHERE name = project_name), score);
-END;
+    DECLARE project_id INT;
+    IF (SELECT COUNT(*) FROM projects WHERE name = project_name) = 0
+    THEN
+        INSERT INTO projects (name) VALUES (project_name);
+    END IF;
+    SET project_id = (SELECT id FROM projects WHERE name = project_name LIMIT 1);
+    INSERT INTO corrections (user_id, project_id, score) VALUES(user_id, project_id, score);
+END
+//
+DELIMITER ;
