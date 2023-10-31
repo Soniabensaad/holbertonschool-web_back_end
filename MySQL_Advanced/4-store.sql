@@ -2,8 +2,7 @@
 CREATE TRIGGER DecreaseItemQuantityAfterOrder
 AFTER INSERT ON orders 
 FOR EACH ROW
--- Decrease the stock_quantity in the items table
 UPDATE items
-SET stock_quantity = stock_quantity - NEW.quantity
-WHERE item_id = NEW.item_id;
+SET stock_quantity = stock_quantity - NEW.number
+WHERE name = NEW.item_id;
    
