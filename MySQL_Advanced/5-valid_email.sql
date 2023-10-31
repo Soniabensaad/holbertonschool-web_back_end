@@ -1,6 +1,5 @@
 -- 5. Email validation to sent
-CREATE TRIGGER email 
-BEFORE UPDATE ON users
+CREATE TRIGGER email_bool BEFORE UPDATE ON users
 FOR EACH ROW
 BEGIN
     IF NEW.email <> OLD.email THEN
