@@ -1,6 +1,6 @@
 -- 4. Buy buy buy
 CREATE TRIGGER DecreaseItemQuantityAfterOrder
-AFTER INSERT ON orders 
+BEFORE INSERT ON orders 
 FOR EACH ROW
 BEGIN
     UPDATE items
