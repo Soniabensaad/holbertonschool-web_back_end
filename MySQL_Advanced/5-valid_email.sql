@@ -1,6 +1,5 @@
 -- 5. Email validation to sent
-
-CREATE TRIGGER valid_email
+CREATE TRIGGER email 
 BEFORE UPDATE ON users
 FOR EACH ROW
 BEGIN
