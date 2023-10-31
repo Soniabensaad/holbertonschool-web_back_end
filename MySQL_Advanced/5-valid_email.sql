@@ -1,3 +1,4 @@
+-- 5. Email validation to sent
 CREATE TRIGGER ResetEmailOnUpdate
 BEFORE UPDATE ON users
 FOR EACH ROW
