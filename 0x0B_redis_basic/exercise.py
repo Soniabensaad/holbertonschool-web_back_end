@@ -35,3 +35,26 @@ class Cache:
             value = 0
 
         return value
+    
+    def __init__(self):
+        self.cache = {}
+
+    def store(self, key, value):
+        self.cache[key] = value
+
+    def retrieve(self, key):
+        return self.cache.get(key, None)
+
+    def count_calls(method):
+        @functools.wraps(method)
+        def wrapper(self, *args, **kwargs):
+            # Use the qualified name of the method as the key
+            key = method.__qualname__
+
+            # Increment the call count
+            self.store(key, self.retrieve(key, 0) + 1)
+
+            # Call the original method and return its result
+            return method(self, *args, **kwargs)
+
+        return wrapper
