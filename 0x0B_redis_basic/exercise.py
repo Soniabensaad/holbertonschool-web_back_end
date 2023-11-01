@@ -39,10 +39,13 @@ class Cache:
     
     
 def count_calls(method: Callable = None) -> Callable:
+    """ Decorator count calls """
+    name = method.__qualname__
+
     @wraps(method)
     def wrapper(self, *args, **kwargs):
-        name = method.__qualname__
-        self._redis.incrby(name, 1)
+        """ Wrapper method """
+        self._redis.incr(name)
         return method(self, *args, **kwargs)
 
     return wrapper
