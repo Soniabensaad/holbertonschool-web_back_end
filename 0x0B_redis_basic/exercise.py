@@ -52,13 +52,10 @@ def count_calls(method: Callable = None) -> Callable:
 
 
 def call_history(method: Callable) -> Callable:
-    """ Decorator call history """
-
     @wraps(method)
     def wrapper(self, *args, **kwargs):
-        """ Wraper function """
-        input: str = str(args)
-        self._redis.rpush(method.__qualname__ + ":inputs", input)
+        input_str = str(args)
+        self._redis.rpush(method.__qualname__ + ":inputs", input_str)
 
         output = str(method(self, *args, **kwargs))
         self._redis.rpush(method.__qualname__ + ":outputs", output)
