@@ -52,10 +52,13 @@ def count_calls(method: Callable = None) -> Callable:
 
 
 def call_history(method: Callable) -> Callable:
+    """ Decorator call history """
+
     @wraps(method)
     def wrapper(self, *args, **kwargs):
-        input_str = str(args)
-        self._redis.rpush(method.__qualname__ + ":inputs", input_str)
+        """ Wraper function """
+        input: str = str(args)
+        self._redis.rpush(method.__qualname__ + ":inputs", input)
 
         output = str(method(self, *args, **kwargs))
         self._redis.rpush(method.__qualname__ + ":outputs", output)
@@ -64,13 +67,31 @@ def call_history(method: Callable) -> Callable:
 
     return wrapper
 
-def replay(method: Callable):
-    method_name = method.__qualname__
 
-    inputs = self._redis.lrange(f"{method_name}:inputs", 0, -1)
-    outputs = self._redis.lrange(f"{method_name}:outputs", 0, -1)
+def replay(func: Callable):
+    """ Replay function """
+    r = redis.Redis()
+    func_name = func.__qualname__
+    number_calls = r.get(func_name)
 
-    print(f"{method_name} was called {len(inputs)} times:")
-    for input_str, output in zip(inputs, outputs):
-        input_args = eval(input_str)  # Convert the input string back to arguments
-        print(f"{method_name}{input_args} -> {output}")
+    try:
+        number_calls = number_calls.decode('utf-8')
+    except Exception:
+        number_calls = 0
+
+    print(f'{func_name} was called {number_calls} times:')
+
+    ins = r.lrange(func_name + ":inputs", 0, -1)
+    outs = r.lrange(func_name + ":outputs", 0, -1)
+
+    for cin, cout in zip(ins, outs):
+        try:
+            cin = cin.decode('utf-8')
+        except Exception:
+            cin = ""
+        try:
+            cout = cout.decode('utf-8')
+        except Exception:
+            cout = ""
+
+        print(f'{func_name}(*{cin}) -> {cout}')
