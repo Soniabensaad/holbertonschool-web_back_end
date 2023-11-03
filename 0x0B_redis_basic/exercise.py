@@ -5,7 +5,9 @@ from uuid import uuid4
 from typing import Union, Callable, Optional
 from functools import wraps
 
+
 class Cache:
+    """Method"""
     def __init__(self):
         self._redis = redis.Redis()
         self._redis.flushdb()
@@ -15,7 +17,8 @@ class Cache:
         self._redis.set(random, data)
         return random
 
-    def get(self, key: str, fn: Callable = None) -> Union[str, bytes, int, float]:
+    def get(self, key: str, fn: Callable = None
+            ) -> Union[str, bytes, int, float]:
         find = self._redis.get(key)
         if find is not None:
             if fn is not None:
@@ -35,6 +38,7 @@ class Cache:
             value = 0
         return value
 
+
 def count_calls(method: Callable = None) -> Callable:
     name = method.__qualname__
 
@@ -42,8 +46,8 @@ def count_calls(method: Callable = None) -> Callable:
     def wrapper(self, *args, **kwargs):
         self._redis.incr(name)
         return method(self, *args, **kwargs)
-
     return wrapper
+
 
 def call_history(method: Callable) -> Callable:
     @wraps(method)
@@ -60,7 +64,6 @@ def call_history(method: Callable) -> Callable:
 
 def replay(self, method: Callable):
     method_name = method.__qualname__
-
     inputs = self._redis.lrange(f"{method_name}:inputs", 0, -1)
     outputs = self._redis.lrange(f"{method_name}:outputs", 0, -1)
 
