@@ -21,7 +21,7 @@ class Cache:
 
     def get(self, key: str, fn: Callable = None
             ) -> Union[str, bytes, int, float]:
-        '''get'''
+        """get function"""
         find = self._redis.get(key)
         if find is not None:
             if fn is not None:
