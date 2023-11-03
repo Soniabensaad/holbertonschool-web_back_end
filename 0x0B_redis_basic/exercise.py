@@ -31,11 +31,11 @@ class Cache:
         return None
 
     def get_str(self, key: str) -> str:
-        """str"""
+        """get str function"""
         return self._redis.get(key).decode("utf-8")
 
     def get_int(self, key: str) -> int:
-        """int"""
+        """get int function"""
         value = self._redis.get(key)
         try:
             value = int(value.decode('utf-8'))
@@ -50,13 +50,14 @@ def count_calls(method: Callable = None) -> Callable:
 
     @wraps(method)
     def wrapper(self, *args, **kwargs):
+        """ wrapper function"""
         self._redis.incr(name)
         return method(self, *args, **kwargs)
     return wrapper
 
 
 def call_history(method: Callable) -> Callable:
-    """callhystory"""
+    """call hystory"""
     @wraps(method)
     def wrapper(self, *args, **kwargs):
         input_str = str(args)
