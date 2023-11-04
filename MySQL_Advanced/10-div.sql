@@ -2,10 +2,11 @@
 -- Create the SafeDiv function
 -- Create the SafeDiv function
 DELIMITER //
-CREATE FUNCTION SafeDiv(a DECIMAL, b DECIMAL)
-RETURNS DECIMAL
+DROP FUNCTION IF EXISTS SafeDiv;
+CREATE FUNCTION SafeDiv(a INT, b INT)
+RETURNS FLOAT
 BEGIN
-  DECLARE result DECIMAL;
+  DECLARE result FLOAT;
 
   IF b = 0 THEN
     SET result = 0;
