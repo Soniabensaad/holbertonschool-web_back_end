@@ -1,10 +1,11 @@
 --10. Safe divide
 -- Create the SafeDiv function
+-- Create the SafeDiv function
 DELIMITER //
-CREATE FUNCTION SafeDiv(a INT, b INT)
-RETURNS INT
+CREATE FUNCTION SafeDiv(a DECIMAL, b DECIMAL)
+RETURNS DECIMAL
 BEGIN
-  DECLARE result INT;
+  DECLARE result DECIMAL;
 
   IF b = 0 THEN
     SET result = 0;
