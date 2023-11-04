@@ -1,3 +1,3 @@
---9. Optimize search and score
+-- Index
 CREATE INDEX idx_name_first_score
-ON names (name(1), score);CREATE INDEX idx_name_first_score ON names ( name(1), score );
+ON names (name(1), score);
