@@ -1,5 +1,5 @@
 // 6-update
-db.school.updateOne(
+db.school.update(
     {name: "Holberton school"},
     { $set: {
         adress: "972 Mission street"
