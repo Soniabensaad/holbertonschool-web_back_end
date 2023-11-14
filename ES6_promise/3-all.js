@@ -1,6 +1,6 @@
 import { uploadPhoto, createUser } from './utils';
 
-export default function handleProfileSignup() {
+function handleProfileSignup() {
   return Promise.all([uploadPhoto(), createUser()])
     .then(([photoResponse, userResponse]) => {
       if (photoResponse.status === 200 && userResponse.status === 200) {
@@ -15,3 +15,4 @@ export default function handleProfileSignup() {
       console.error(error.message);
     });
 }
+export default handleProfileSignup;
