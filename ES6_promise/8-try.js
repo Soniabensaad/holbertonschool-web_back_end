@@ -3,5 +3,7 @@ export default function divideFunction(numerator, denominator) {
     throw Error('Cannot divide by 0');
   }
 
-  return numerator / denominator;
+  const result = numerator / denominator;
+
+  return result;
 }
