@@ -1,5 +1,3 @@
-const getStudentsByLocation = (students, city) => {
-    return students
-       .filter(obj => obj.location === city);
-}
+const getStudentsByLocation = (students, city) => students
+  .filter((obj) => obj.location === city);
 export default getStudentsByLocation;
