@@ -10,6 +10,9 @@ const cleanSet = (set, startString) => {
         }
     });
 
+    if (resultArray.length === 0) {
+        return "";
+    }
 
     return resultArray.join("-");
 };
