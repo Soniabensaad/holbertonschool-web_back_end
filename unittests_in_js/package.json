@@ -1,0 +1,14 @@
+{
+  "name": "unittests_in_js",
+  "version": "1.0.0",
+  "description": "Learning Objectives At the end of this project, you are expected to be able to explain to anyone, without the help of Google:",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "mocha": "^10.2.0"
+  }
+}
