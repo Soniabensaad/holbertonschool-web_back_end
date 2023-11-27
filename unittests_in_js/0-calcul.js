@@ -1,7 +1,6 @@
 moduleeports = function calculateNumber (a, b) {
-    let roundedA = Math.round(a);
-    let roundedB = Math.round(b);
-    let sum = roundedA + roundedB;
+    let roundedA = Number(a);
+    let roundedB = Number(b);
+    let sum = Math.round(roundedA) + Math.round(roundedB);
     return sum;
 }
-
