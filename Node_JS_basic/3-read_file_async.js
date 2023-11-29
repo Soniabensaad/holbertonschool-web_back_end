@@ -48,7 +48,7 @@ async function countStudents(filePath) {
 }
 
 // Example usage
-countStudents("database.csv")
+countStudents('database.csv')
   .then(() => {
     console.log('Done!');
   })
