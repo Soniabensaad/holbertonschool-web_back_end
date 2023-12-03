@@ -1,5 +1,5 @@
 const { expect } = require('chai');
-const calculateNumber = require('./1-calcul.js');
+const calculateNumber = require('./2-calcul_chai.js'); // Update the path to the new file
 
 describe('calculateNumber', function () {
   it('should round and sum two numbers', function () {
@@ -14,3 +14,4 @@ describe('calculateNumber', function () {
     expect(calculateNumber('DIVIDE', 4, 2)).to.equal(2);
   });
 });
+
