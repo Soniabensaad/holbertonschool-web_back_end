@@ -8,8 +8,8 @@ const pushNotificationJobType = 'push_notification_code';
 
 // Sample job data
 const jobData = {
-  phoneNumber: '21622514123',
-  message: 'This is a push notification!',
+  phoneNumber: '4153518780',
+  message: 'This is the code to verify your account',
 };
 
 // Enqueue a job in the 'push_notification_code' queue
@@ -17,7 +17,7 @@ const pushNotificationJob = queue.create(pushNotificationJobType, jobData)
   .priority('high')
   .save((err) => {
     if (!err) {
-      console.log(`Notification job created: JOB ID ${pushNotificationJob.id}`);
+      console.log(`Notification job created: ${pushNotificationJob.id}`);
     } else {
       console.error('Notification job failed:', err);
     }
