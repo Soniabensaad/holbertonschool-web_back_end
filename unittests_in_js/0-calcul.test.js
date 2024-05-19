@@ -1,24 +1,58 @@
-// 0-calcul.test.js
 const assert = require('assert');
-const mocha = require('mocha');
-const calculateNumber = require('./0-calcul.js');
+const calculateNumber = require('./0-calcul');
 
 describe('calculateNumber', function () {
-  it('should round and sum two numbers', function () {
-    assert.strictEqual(calculateNumber(1, 3), 4);
+  describe('Two Integers', function () {
+    it('should return 4', function () {
+      assert.strictEqual(calculateNumber(1, 3), 4);
+    });
   });
 
-  it('should round and sum two numbers with decimals', function () {
-    assert.strictEqual(calculateNumber(1, 3.7), 5);
+  describe('One round', function () {
+    it('should return 5', function () {
+      assert.strictEqual(calculateNumber(1, 3.7), 5);
+    });
   });
 
-  it('should round and sum two decimal numbers', function () {
-    assert.strictEqual(calculateNumber(1.2, 3.7), 5);
+  describe('One round 2', function () {
+    it('should return 5', function () {
+      assert.strictEqual(calculateNumber(3.7, 1), 5);
+    });
   });
 
-  it('should round and sum two decimal numbers (another case)', function () {
-    assert.strictEqual(calculateNumber(1.5, 3.7), 6);
+  describe('One round floor', function () {
+    it('should return 4', function () {
+      assert.strictEqual(calculateNumber(1, 3.3), 4);
+    });
   });
 
-  // Add more test cases as needed
+  describe('One round floor 2', function () {
+    it('should return 4', function () {
+      assert.strictEqual(calculateNumber(3.3, 1), 4);
+    });
+  });
+
+  describe('Two round', function () {
+    it('should return 5', function () {
+      assert.strictEqual(calculateNumber(1.2, 3.7), 5);
+    });
+  });
+
+  describe('Two round again', function () {
+    it('should return 6', function () {
+      assert.strictEqual(calculateNumber(1.5, 3.7), 6);
+    });
+  });
+
+  describe('Two round reversed', function () {
+    it('should return 5', function () {
+      assert.strictEqual(calculateNumber(3.7, 1.2), 5);
+    });
+  });
+
+  describe('Two round again floor both', function () {
+    it('should return 3', function () {
+      assert.strictEqual(calculateNumber(1.2, 2.1), 3);
+    });
+  });
 });
